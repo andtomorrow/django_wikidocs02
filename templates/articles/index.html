@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container my-3">
+  <h1>articles</h1>
+  <table class="table">
+    <thead>
+      <tr class="table-gray">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성일시</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if articles %} {% for article in articles %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url 'articles:detail' article.pk %}">{{ article.subject }}</a></td>
+        <td>{{ question.created_at }}</td>
+      </tr>
+      {% endfor %} {% else %}
+      <tr>
+        <td colspan="3">글이 없습니다.</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+  <a href="{% url 'articles:create' %}" class="btn btn-gray">글쓰기</a>
+</div>
+{% endblock content %}
